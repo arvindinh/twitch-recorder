@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: twitch-recorder
+  labels:
+    app: twitch-recorder
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: twitch-recorder
+  template:
+    metadata:
+      labels:
+        app: twitch-recorder
+    spec:
+      containers:
+      - name: twitch-recorder
+        image: your-docker-registry/twitch-recorder:latest
+        imagePullPolicy: Always
+        envFrom:
+        - secretRef:
+            name: twitch-recorder-secrets
+        volumeMounts:
+        - name: output-volume
+          mountPath: /app/downloads
+      volumes:
+      - name: output-volume
+        persistentVolumeClaim:
+          claimName: twitch-recorder-pvc

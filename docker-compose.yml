@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  twitch-recorder:
+    build: .
+    container_name: twitch-recorder
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      # Mount a local directory to save the recorded videos
+      - ./downloads:/app/downloads
+    environment:
+      - OUTPUT_DIR=/app/downloads

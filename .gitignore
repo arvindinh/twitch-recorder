@@ -1,0 +1,24 @@
+# Secrets
+.env
+.env.*
+config.ini
+client_secrets.json
+request.token
+*.token
+*.exe
+*.zip
+
+
+# Virtual Environments
+.venv/
+venv/
+env/
+
+# Python caching
+__pycache__/
+*.pyc
+
+# Downloads & Debugging
+*.mp4
+*.part
+test_out.txt
