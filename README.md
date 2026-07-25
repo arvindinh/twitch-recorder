@@ -1,11 +1,11 @@
 # Event-Driven Video Ingestion Pipeline (Twitch Automator)
 
-An enterprise-grade, event-driven Python service that uses Twitch WebSockets to instantly detect live broadcasts, record them in real-time using `streamlink`, and orchestrate nightly uploads to YouTube using Apache Airflow.
+An enterprise-grade, event-driven Python service that uses Twitch WebSockets to instantly detect live broadcasts, record them in real-time using `streamlink`, and orchestrate concurrent, on-demand uploads to YouTube using Apache Airflow.
 
 ## Architecture & Features
 
 - **Real-Time Detection:** Uses Twitch EventSub WebSockets to begin recording the exact second a stream goes live.
-- **Automated YouTube Pipeline:** Apache Airflow DAGs automatically split, process, and upload massive VODs to YouTube nightly.
+- **Automated YouTube Pipeline:** Apache Airflow DAGs automatically process and upload massive VODs to YouTube concurrently as soon as they finish recording (or hit the 12-hour limit).
 - **Enterprise Observability:** Features JSON structured logging and a live Prometheus metrics server tracking API health and active downloads.
 - **Storage Decoupling:** Containerized with Docker and Kubernetes, natively supporting CSI volume mounts to store recordings directly in AWS S3 or other cloud providers without codebase changes.
 - **Automated Health Checks:** Weekly Airflow cron jobs actively test API token validity and binary versions to prevent silent failures.
